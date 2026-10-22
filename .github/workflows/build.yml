@@ -40,4 +40,5 @@ jobs:
             ${{ steps.img.outputs.name }}:latest
 
       - name: Result
-        run: echo "Образ готов: ${{ steps.img.outputs.name }}:r${{ github.run_number }}" >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          echo "Образ готов: ${{ steps.img.outputs.name }}:r${{ github.run_number }}" >> "$GITHUB_STEP_SUMMARY"
