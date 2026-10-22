@@ -42,3 +42,35 @@ jobs:
       - name: Result
         run: |
           echo "Образ готов: ${{ steps.img.outputs.name }}:r${{ github.run_number }}" >> "$GITHUB_STEP_SUMMARY"
+
+  # 22.10: образ для AMD (база ROCm 7.2 + SRBMiner 3.7.7) — Dockerfile.amd, отдельное имя salad-miner-amd
+  build-amd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Image name
+        id: img
+        run: echo "name=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/salad-miner-amd" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile.amd
+          push: true
+          labels: org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+          tags: |
+            ${{ steps.img.outputs.name }}:r${{ github.run_number }}
+            ${{ steps.img.outputs.name }}:latest
+
+      - name: Result
+        run: |
+          echo "Образ AMD готов: ${{ steps.img.outputs.name }}:r${{ github.run_number }}" >> "$GITHUB_STEP_SUMMARY"
