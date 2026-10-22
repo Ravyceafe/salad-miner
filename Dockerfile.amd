@@ -1,0 +1,18 @@
+# Образ майнинга для AMD на SaladCloud (22.10.2026). База — та же, что у AMD-групп сейчас (rocm/dev-ubuntu-24.04:7.2):
+# её слои уже в кэше сети Salad, новые машины докачивают только слои ниже (~60 МБ).
+# Поверх — curl и архив SRBMiner, проверенный по SHA-256 (та же сумма, что SRB_AMD в research/salad_deploy.py).
+# Кошелька, воркера и ключей в образе нет: они приходят в команде группы, как сейчас.
+FROM rocm/dev-ubuntu-24.04:7.2
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends curl ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+
+# Имя файла — как в релизе GitHub: скрипт ищет /opt/miners/<имя файла из адреса загрузки>.
+WORKDIR /opt/miners
+
+# SRBMiner 3.7.7 — AMD (PRL и Quantus)
+RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.7.7/SRBMiner-Multi-3-7-7-Linux.tar.gz \
+ && echo "d5760bb9e1bf052d7749bb659f99da1813a9b55f944b0722f42dd2231105ab76  SRBMiner-Multi-3-7-7-Linux.tar.gz" | sha256sum -c -
+
+WORKDIR /
