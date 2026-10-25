@@ -11,7 +11,7 @@ RUN apt-get update \
 # Имя файла — как в релизе GitHub: скрипт ищет /opt/miners/<имя файла из адреса загрузки>.
 WORKDIR /opt/miners
 
-# SRBMiner 3.7.9 — NVIDIA RTX 30xx/40xx/50xx (новые машины)
+# SRBMiner 3.7.9 — NVIDIA RTX 30xx/40xx/50xx до 25.10 (запасной для отката по карте)
 RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.7.9/SRBMiner-Multi-3-7-9-Linux.tar.gz \
  && echo "f0cfca82411fdf2245422db1d5989ce3f5e5b746ec776581853af5705f2b9a7f  SRBMiner-Multi-3-7-9-Linux.tar.gz" | sha256sum -c -
 
@@ -26,5 +26,9 @@ RUN curl -fsSLO https://github.com/peakminer/peakminer/releases/download/v2.19.1
 # PeakMiner 2.17.5 — запасной для RTX 50xx (Blackwell)
 RUN curl -fsSLO https://github.com/peakminer/peakminer/releases/download/v2.17.5/peakminer-2.17.5-linux-x86_64 \
  && echo "8eb1f86bc8e366ca33a656360966784c4c0a7262a703c5bc2a901e8795685b11  peakminer-2.17.5-linux-x86_64" | sha256sum -c -
+
+# SRBMiner 3.8.0 — NVIDIA RTX 30xx/40xx/50xx, новые машины с 25.10 (последним слоем: прежние слои остаются в кэше)
+RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.8.0/SRBMiner-Multi-3-8-0-Linux.tar.gz \
+ && echo "095c3f75905ee023e8ed85ac905afefc92825cce83a528fa955cf1db456d3dd8  SRBMiner-Multi-3-8-0-Linux.tar.gz" | sha256sum -c -
 
 WORKDIR /
