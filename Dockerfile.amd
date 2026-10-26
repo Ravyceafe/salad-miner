@@ -15,4 +15,9 @@ WORKDIR /opt/miners
 RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.7.7/SRBMiner-Multi-3-7-7-Linux.tar.gz \
  && echo "d5760bb9e1bf052d7749bb659f99da1813a9b55f944b0722f42dd2231105ab76  SRBMiner-Multi-3-7-7-Linux.tar.gz" | sha256sum -c -
 
+# SRBMiner 3.8.0 — AMD, новые машины с 26.10 (владелец: «все новые машины — на образе 3.8.0, AMD и NVIDIA»);
+# последним слоем: 3.7.7 остаётся в кэше и для отката
+RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.8.0/SRBMiner-Multi-3-8-0-Linux.tar.gz \
+ && echo "095c3f75905ee023e8ed85ac905afefc92825cce83a528fa955cf1db456d3dd8  SRBMiner-Multi-3-8-0-Linux.tar.gz" | sha256sum -c -
+
 WORKDIR /
