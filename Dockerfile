@@ -31,4 +31,9 @@ RUN curl -fsSLO https://github.com/peakminer/peakminer/releases/download/v2.17.5
 RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.8.0/SRBMiner-Multi-3-8-0-Linux.tar.gz \
  && echo "095c3f75905ee023e8ed85ac905afefc92825cce83a528fa955cf1db456d3dd8  SRBMiner-Multi-3-8-0-Linux.tar.gz" | sha256sum -c -
 
+# PeakMiner 2.20.2 (28.10) — RTX 20xx, Китай, запасной при отказе SRBMiner на 30xx/40xx (2.19.1 выше — для отката;
+# RTX 50xx — по-прежнему 2.17.5: тикет peakminer#24 открыт). Последним слоем: прежние слои остаются в кэше
+RUN curl -fsSLO https://github.com/peakminer/peakminer/releases/download/v2.20.2/peakminer-2.20.2-linux-x86_64 \
+ && echo "6095b04fc0f40616c2b4e7ea94f370c2fe245a2fdddf3d46258a909d5127b045  peakminer-2.20.2-linux-x86_64" | sha256sum -c -
+
 WORKDIR /
