@@ -20,4 +20,8 @@ RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.7
 RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.8.0/SRBMiner-Multi-3-8-0-Linux.tar.gz \
  && echo "095c3f75905ee023e8ed85ac905afefc92825cce83a528fa955cf1db456d3dd8  SRBMiner-Multi-3-8-0-Linux.tar.gz" | sha256sum -c -
 
+# SRBMiner 3.8.1 — AMD, новые машины с 29.10 (владелец: «устанавливай её вместо 3.8.0»); 3.8.0 выше — для отката
+RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.8.1/SRBMiner-Multi-3-8-1-Linux.tar.gz \
+ && echo "2f65b3b7f7781def46610c43b8a10a3d38033f6cf4ef6cc968b405ca9b0ce807  SRBMiner-Multi-3-8-1-Linux.tar.gz" | sha256sum -c -
+
 WORKDIR /

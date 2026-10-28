@@ -36,4 +36,9 @@ RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.8
 RUN curl -fsSLO https://github.com/peakminer/peakminer/releases/download/v2.20.2/peakminer-2.20.2-linux-x86_64 \
  && echo "6095b04fc0f40616c2b4e7ea94f370c2fe245a2fdddf3d46258a909d5127b045  peakminer-2.20.2-linux-x86_64" | sha256sum -c -
 
+# SRBMiner 3.8.1 (29.10, владелец: «вышла новая srbminer… обнови докер и устанавливай её вместо 3.8.0») — NVIDIA RTX
+# 30xx/40xx/50xx, новые машины; 3.8.0 выше — для отката. Последним слоем: прежние слои остаются в кэше
+RUN curl -fsSLO https://github.com/doktor83/SRBMiner-Multi/releases/download/3.8.1/SRBMiner-Multi-3-8-1-Linux.tar.gz \
+ && echo "2f65b3b7f7781def46610c43b8a10a3d38033f6cf4ef6cc968b405ca9b0ce807  SRBMiner-Multi-3-8-1-Linux.tar.gz" | sha256sum -c -
+
 WORKDIR /
